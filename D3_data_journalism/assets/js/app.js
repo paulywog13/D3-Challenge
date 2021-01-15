@@ -33,11 +33,11 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([20, d3.max(healthData, d => d.obesity)])
+      .domain([0, d3.max(healthData, d => d.poverty)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(healthData, d => d.poverty)])
+      .domain([0, d3.max(healthData, d => d.obesity)])
       .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -60,10 +60,10 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .data(healthData)
     .enter()
     .append("circle")
-    .attr("cx", d => xLinearScale(d.obesity))
-    .attr("cy", d => yLinearScale(d.poverty))
-    .attr("r", "15")
-    .attr("fill", "pink")
+    .attr("cx", d => xLinearScale(d.poverty))
+    .attr("cy", d => yLinearScale(d.obesity))
+    .attr("r", "10")
+    .attr("fill", "lightblue")
     .attr("opacity", ".5");
 
     // Step 6: Initialize tool tip
@@ -72,7 +72,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
       .attr("class", "tooltip")
       .offset([80, -60])
       .html(function(d) {
-        return (`${d.state}<br>Obese: ${d.obesity}<br>Poverty: ${d.poverty}`);
+        return (`${d.state}<br>Poverty(%): ${d.poverty}<br>Obesity(%): ${d.obesity}`);
       });
 
     // Step 7: Create tooltip in the chart
@@ -96,12 +96,12 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
-      .text("Number of Billboard 100 Hits");
+      .text("Obesity(%)");
 
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
-      .text("Hair Metal Band Hair Length (inches)");
+      .text("Poverty(%)");
   }).catch(function(error) {
     console.log(error);
   });
