@@ -1,12 +1,12 @@
 // @TODO: YOUR CODE HERE!
-var svgWidth = 960;
-var svgHeight = 500;
+var svgWidth = 800;
+var svgHeight = 600;
 
 var margin = {
   top: 20,
-  right: 40,
+  right: 20,
   bottom: 60,
-  left: 100
+  left: 50
 };
 
 var width = svgWidth - margin.left - margin.right;
@@ -33,11 +33,11 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(healthData, d => d.poverty)])
+      .domain([d3.min(healthData, d => d.poverty)*0.8, d3.max(healthData, d => d.poverty)*1.05])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
-      .domain([0, d3.max(healthData, d => d.obesity)])
+      .domain([d3.min(healthData, d => d.obesity)*0.8, d3.max(healthData, d => d.obesity)*1.05])
       .range([height, 0]);
 
     // Step 3: Create axis functions
@@ -62,9 +62,24 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.obesity))
-    .attr("r", "10")
+    .attr("r", "15")
     .attr("fill", "lightblue")
     .attr("opacity", ".5");
+
+    //Adding state abbreviations in the circles on the chart
+    chartGroup.selectAll()
+    .data(healthData)
+    .enter()
+    .append("text")
+    .attr("text-anchor", "middle")
+    .attr("font-size", "10px")
+    .attr("x", d => xLinearScale(d.poverty))
+    .attr("y", d => yLinearScale(d.obesity))
+    .attr("r", "8")
+    .style("fill", "black")
+    .attr("opacity", ".5")
+    .text(d => d.abbr)
+    .classed("stateText", true);
 
     // Step 6: Initialize tool tip
     // ==============================
@@ -92,7 +107,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     // Create axes labels
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
-      .attr("y", 0 - margin.left + 40)
+      .attr("y", -margin.left)
       .attr("x", 0 - (height / 2))
       .attr("dy", "1em")
       .attr("class", "axisText")
