@@ -99,10 +99,24 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     circlesGroup.on("click", function(data) {
       toolTip.show(data, this);
     })
-      // onmouseout event
+    
+    circlesGroup.on("mouseover", function() {
+      d3.select(this)
+        .transition()
+        .duration(800)
+        .attr("r", 20)
+        .attr("fill", "lightgreen");
+    })
+      // onmouseout even
       .on("mouseout", function(data, index) {
-        toolTip.hide(data);
+        d3.select(this)
+          .transition()
+          .duration(800)
+          .attr("r", 15)
+          .attr("fill", "lightblue")
+          toolTip.hide(data);
       });
+      
 
     // Create axes labels
     chartGroup.append("text")
