@@ -12,7 +12,8 @@ var margin = {
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
 
-// Create an SVG wrapper, append an SVG group that will hold our chart, and shift the latter by left and top margins.
+// Create an SVG wrapper, append an SVG group that will hold our chart, 
+// and shift the latter by left and top margins.
 var svg = d3.select("#scatter")
   .append("svg")
   .attr("width", svgWidth)
@@ -62,7 +63,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .append("circle")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.obesity))
-    .attr("r", "15")
+    .attr("r", "12")
     .attr("fill", "lightblue")
     .attr("opacity", ".5");
 
@@ -72,12 +73,12 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .enter()
     .append("text")
     .attr("text-anchor", "middle")
-    .attr("font-size", "10px")
+    .attr("font-size", "12px")
     .attr("x", d => xLinearScale(d.poverty))
     .attr("y", d => yLinearScale(d.obesity))
     .attr("r", "8")
     .style("fill", "black")
-    .attr("opacity", ".5")
+    .attr("opacity", ".7")
     .text(d => d.abbr)
     .classed("stateText", true);
 
@@ -100,6 +101,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
       toolTip.show(data, this);
     })
     
+    // on mouseover event to highlight the chart circle selected
     circlesGroup.on("mouseover", function() {
       d3.select(this)
         .transition()
@@ -107,18 +109,19 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
         .attr("r", 20)
         .attr("fill", "lightgreen");
     })
-      // onmouseout even
+      // on mouseout event
       .on("mouseout", function(data, index) {
         d3.select(this)
           .transition()
           .duration(800)
-          .attr("r", 15)
+          .attr("r", 12)
           .attr("fill", "lightblue")
           toolTip.hide(data);
       });
       
 
-    // Create axes labels
+    
+    // Create y axis label
     chartGroup.append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", -margin.left)
@@ -127,6 +130,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
       .attr("class", "axisText")
       .text("Obesity(%)");
 
+    // Create x axis label
     chartGroup.append("text")
       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
       .attr("class", "axisText")
