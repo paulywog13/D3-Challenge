@@ -173,7 +173,6 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
 
 // Retrieve data from the CSV file and execute everything below
 d3.csv("./assets/data/data.csv").then(function(healthData) {
-  // if (err) throw err;
 
   // parse data
   healthData.forEach(function(data) {
@@ -185,7 +184,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     data.healthcare = +data.healthcare;
   });
 
-  // xLinearScale function above csv import
+  // xLinearScale and yLinearScale functions from above 
   var xLinearScale = xScale(healthData, chosenXAxis);
   var yLinearScale = yScale(healthData, chosenYAxis);
 
@@ -216,6 +215,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .attr("opacity", ".6")
     .classed("stateCircle", true);
 
+  // append initial circles text
   var TextGroup= dataCircles
     .append("text")
     .attr("text-anchor", "middle")
