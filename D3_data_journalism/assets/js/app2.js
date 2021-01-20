@@ -165,7 +165,6 @@ function updateToolTip(chosenXAxis, chosenYAxis, circlesGroup) {
           .transition()
           .duration(600)
           .attr("r", 12)
-          .attr("fill", "lightblue")
       toolTip.hide(data);
     });
 
@@ -214,13 +213,13 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .attr("cy", d => yLinearScale(d[chosenYAxis]))
     .attr("r", "12")
     .attr("fill", "lightblue")
-    .attr("opacity", ".5")
+    .attr("opacity", ".6")
     .classed("stateCircle", true);
 
   var TextGroup= dataCircles
     .append("text")
     .attr("text-anchor", "middle")
-    .attr("font-size", "11px")
+    .attr("font-size", "10px")
     .text(d => d.abbr)
     .attr("x", d => xLinearScale(d[chosenXAxis]))
     .attr("y", d => yLinearScale(d[chosenYAxis]))
@@ -228,7 +227,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .attr("opacity", ".7")
     .classed("stateText", true);
 
-  // Create group for 3 x-axis labels
+  // Create group for the 3 x-axis labels
   var xlabelsGroup = chartGroup.append("g")
     .attr("transform", `translate(${width / 2}, ${height + 20})`);
 
@@ -253,7 +252,7 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     .classed("inactive", true)
     .text("Household Income (Median)");
   
-  // Create group for 3 y-axis labels
+  // Create group for the 3 y-axis labels
   var ylabelsGroup = chartGroup.append("g")
   .attr("transform", "rotate(-90)")
 
@@ -306,7 +305,8 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
         // updates circles with new x values
         circlesGroup = renderXCircles(circlesGroup, xLinearScale, chosenXAxis);
         TextGroup = renderXCirclesText(TextGroup, xLinearScale, chosenXAxis);
-        // updates tooltips with new info
+        
+        // updates tooltips with new info based on x axis selection
         circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
         // changes classes to change bold text
@@ -352,22 +352,22 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
     var value = d3.select(this).attr("value");
     if (value !== chosenYAxis) {
 
-      // replaces chosenXAxis with value
+      // replaces chosenYAxis with value
       chosenYAxis = value;
 
-      // console.log(chosenXAxis)
+      // console.log(chosenYAxis)
 
       // functions here found above csv import
-      // updates x scale for new data
+      // updates y scale for new data
       yLinearScale = yScale(healthData, chosenYAxis);
 
-      // updates x axis with transition
+      // updates y axis with transition
       yAxis = renderYAxes(yLinearScale, yAxis);
       TextGroup = renderYCirclesText(TextGroup, yLinearScale, chosenYAxis)
-      // updates circles with new x values
+      // updates circles with new y values
       circlesGroup = renderYCircles(circlesGroup, yLinearScale, chosenYAxis);
 
-      // updates tooltips with new info
+      // updates tooltips with new info based on y axis selection
       circlesGroup = updateToolTip(chosenXAxis, chosenYAxis, circlesGroup);
 
       // changes classes to change bold text
@@ -410,99 +410,3 @@ d3.csv("./assets/data/data.csv").then(function(healthData) {
   console.log(error);
 });
 
-//      // Step 1: Parse Data/Cast as numbers
-//     // ==============================
-//     healthData.forEach(function(data) {
-//         data.obesity = +data.obesity;
-//         data.poverty = +data.poverty;
-//       });
-//     // Step 2: Create scale functions
-//     // ==============================
-//     var xLinearScale = d3.scaleLinear()
-//       .domain([d3.min(healthData, d => d.poverty)*0.8, d3.max(healthData, d => d.poverty)*1.05])
-//       .range([0, width]);
-
-//     var yLinearScale = d3.scaleLinear()
-//       .domain([d3.min(healthData, d => d.obesity)*0.8, d3.max(healthData, d => d.obesity)*1.05])
-//       .range([height, 0]);
-
-//     // Step 3: Create axis functions
-//     // ==============================
-//     var bottomAxis = d3.axisBottom(xLinearScale);
-//     var leftAxis = d3.axisLeft(yLinearScale);
-
-//     // Step 4: Append Axes to the chart
-//     // ==============================
-//     chartGroup.append("g")
-//       .attr("transform", `translate(0, ${height})`)
-//       .call(bottomAxis);
-
-//     chartGroup.append("g")
-//       .call(leftAxis);
-
-//     // Step 5: Create Circles
-//     // ==============================
-//     var circlesGroup = chartGroup.selectAll("circle")
-//     .data(healthData)
-//     .enter()
-//     .append("circle")
-//     .attr("cx", d => xLinearScale(d.poverty))
-//     .attr("cy", d => yLinearScale(d.obesity))
-//     .attr("r", "15")
-//     .attr("fill", "lightblue")
-//     .attr("opacity", ".5");
-
-//     //Adding state abbreviations in the circles on the chart
-//     chartGroup.selectAll()
-//     .data(healthData)
-//     .enter()
-//     .append("text")
-//     .attr("text-anchor", "middle")
-//     .attr("font-size", "10px")
-//     .attr("x", d => xLinearScale(d.poverty))
-//     .attr("y", d => yLinearScale(d.obesity))
-//     .attr("r", "8")
-//     .style("fill", "black")
-//     .attr("opacity", ".5")
-//     .text(d => d.abbr)
-//     .classed("stateText", true);
-
-//     // Step 6: Initialize tool tip
-//     // ==============================
-//     var toolTip = d3.tip()
-//       .attr("class", "tooltip")
-//       .offset([80, -60])
-//       .html(function(d) {
-//         return (`${d.state}<br>Poverty(%): ${d.poverty}<br>Obesity(%): ${d.obesity}`);
-//       });
-
-//     // Step 7: Create tooltip in the chart
-//     // ==============================
-//     chartGroup.call(toolTip);
-
-//     // Step 8: Create event listeners to display and hide the tooltip
-//     // ==============================
-//     circlesGroup.on("click", function(data) {
-//       toolTip.show(data, this);
-//     })
-//       // onmouseout event
-//       .on("mouseout", function(data, index) {
-//         toolTip.hide(data);
-//       });
-
-//     // Create axes labels
-//     chartGroup.append("text")
-//       .attr("transform", "rotate(-90)")
-//       .attr("y", -margin.left)
-//       .attr("x", 0 - (height / 2))
-//       .attr("dy", "1em")
-//       .attr("class", "axisText")
-//       .text("Obesity(%)");
-
-//     chartGroup.append("text")
-//       .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
-//       .attr("class", "axisText")
-//       .text("Poverty(%)");
-//   }).catch(function(error) {
-//     console.log(error);
-//   });
