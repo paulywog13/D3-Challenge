@@ -6,7 +6,10 @@ Files included in this challenge: data.csv, app.js, app2.js, index.html, style.c
 
 Languages used: JavaScript, CSS, HTML
 
-The app.js file contains the first part of the challenge comparing each states poverty percentage data to it's obesity percentage. Along with the state abbreviation for each data point, I included a mouseover and click function for each data point. The click function displays the state's toolTip data for each point on the chart. 
+The app.js file contains the core/first part of the challenge creating an interactive D3 Chart comparing each states' poverty percentage to it's obesity percentage data. Along with the state abbreviation for each data point, I included a mouseover and click function for each data point. The click function displays the state's toolTip data for each point on the chart. 
+
+
+The app2.js file contains the bonus/second part of the challenge creating an interactive D3 Chart comparing each states' poverty percentage, median age, and median income data to it's obesity percentage, smokers percentage, and healthcare percantage . Along with the state abbreviation for each data point, I included a mouseover function for each data point to expand the selected data point and display the state's toolTip data for the selected point on the chart.
 
 My main takeaway from this challenge is that using JavaScript and Plotly graphs are great tools for processing and presenting data in so that it can be displayed in a easy to read and understand format. I enjoyed learning and working with a variety of Plotly graphing and chart styles and it helped me to understand how and why different graphs would be used for different sets of data.
 
