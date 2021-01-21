@@ -1,10 +1,12 @@
 # D3-Challenge
 
-The goal of this challenge was to use JavaScript and Plotly coding to read in the data of a json file containing data on bacteria found in the belly buttons of a group of test subjects and to dispay the information on an html website. The website needed include a dropdown menu and 4 different types of plotly charts that would need to be updated with new test subject information and each time a new test subject is chosen from the menu.
+The goal of this challenge was to use JavaScript and D3 coding to read in the data of a csv file containing demographic data for all 50 states and then then to dispay the information on an html website using a D3 chart. The chart needed to display the data in a comparitive way and also needed to include the state abbreviations as identifiers. 
 
-Files included in this challenge: samples.json, app.js, index.html, style.css
+Files included in this challenge: data.csv, app.js, app2.js, index.html, style.css, d3Style.css
 
 Languages used: JavaScript, CSS, HTML
+
+The app.js file contains the first part of the challenge 
 
 My main takeaway from this challenge is that using JavaScript and Plotly graphs are great tools for processing and presenting data in so that it can be displayed in a easy to read and understand format. I enjoyed learning and working with a variety of Plotly graphing and chart styles and it helped me to understand how and why different graphs would be used for different sets of data.
 
