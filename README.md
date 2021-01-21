@@ -17,4 +17,4 @@ Creating the tooltip for each point on these chart was my favorite part of this 
 
 The hardest part of the bonus chart was figuring out how to change the scale for each data set as the example from class only included changing one of the axes but our chart required changes to both axes. It was also difficult to think of the chart as being in quadrant 4 of an xy graph and understanding how to translate the data by flipping it. 
 
-I also added in some style.css code to update the display on the website including font on coloring to give the site some uniqueness and to be more eye catching.
+I also added in some style.css code to update the display on the website including font and tooltip coloring to give the site some uniqueness and to be more eye catching. I also added some basic analysis information below the chart explaining the oberservations of the bonus chard data.
