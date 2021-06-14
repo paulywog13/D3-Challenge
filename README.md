@@ -12,9 +12,6 @@ The app.js file contains the core/first part of the challenge creating an intera
 
 The app2.js file contains the bonus/second part of the challenge creating an interactive D3 Chart comparing each states' poverty percentage, median age, and median income data to it's obesity percentage, smokers percentage, and healthcare percantage . Along with the state abbreviation for each data point, I included a mouseover function for each data point to expand the selected data point and display the state's toolTip data for the selected point on the chart.
 
-![Screenshot (4)](https://user-images.githubusercontent.com/69220393/121842482-babfdd00-cc9d-11eb-919b-7fd089b97460.png)
-
-
 https://user-images.githubusercontent.com/69220393/121931441-da3c2180-cd00-11eb-8433-00e50df6ee59.mp4
 
 My main takeaway from this challenge is that using JavaScript and D3 are great tools for processing and presenting data in so that it can be displayed in a easy to read and understand format. I enjoyed learning about and working with a variety of D3 graphing tools. I also enjoyed learning how to create interactive display methods and how they can be used to present the data in a user friendly way.
