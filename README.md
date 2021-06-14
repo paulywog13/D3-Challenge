@@ -14,6 +14,9 @@ The app2.js file contains the bonus/second part of the challenge creating an int
 
 ![Screenshot (4)](https://user-images.githubusercontent.com/69220393/121842482-babfdd00-cc9d-11eb-919b-7fd089b97460.png)
 
+
+https://user-images.githubusercontent.com/69220393/121931441-da3c2180-cd00-11eb-8433-00e50df6ee59.mp4
+
 My main takeaway from this challenge is that using JavaScript and D3 are great tools for processing and presenting data in so that it can be displayed in a easy to read and understand format. I enjoyed learning about and working with a variety of D3 graphing tools. I also enjoyed learning how to create interactive display methods and how they can be used to present the data in a user friendly way.
 
 Creating the tooltip for each point on these chart was my favorite part of this challenge as it made the chart interactive and fun as well as a creative way display the data. I like that I also enjoyed creating the interactive chart on the bonus portion and it took some time and research to understand how to have each point's circle and state abbreviation text move together based upon with data set was selected. 
